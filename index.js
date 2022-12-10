@@ -1,7 +1,7 @@
-const functions = require("firebase-functions");
+const express = require("express");
+const cors = require("cors");
+const PORT = process.env.PORT || 3000;
 
-const express = require('express');
-const cors = require('cors');
 const stripe = require('stripe')(
   "sk_test_51Lzp3uCXGkxXZYx67NdBtCtxuG2JbnzGPXqdQCjKGC7XPnOOOftrH60XcI0B79h3w2RwyrqSV4CybVApKEzKX3Ia00ghxNEOln"
 );
@@ -32,8 +32,12 @@ app.post('/payments/create', async (request, response) => {
   });
 });
 
-// - Listen command
-exports.api = functions.https.onRequest(app);
+app.listen(PORT, () => {
+  console.log(`serever running on port: ${PORT}`);
+});
+
+
+
 
 // http://127.0.0.1:5001/clone-97bbb/us-central1/api
 
